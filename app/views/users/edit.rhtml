@@ -1,0 +1,63 @@
+<h1>Editing Profile</h1>
+<%= error_messages_for :user %>
+
+<% if current_user.admin? %>
+  <div style="float:right; clear:right;">
+  <%= link_to image_tag("delete.png")+'Delete User', user_path(@user), :confirm => 'Are you SURE you want to DESTROY this person?', :method => :delete %>
+  </div>
+<% end %>
+
+<% form_for @user, :html => { :multipart => true } do |f| -%>
+  <dl class="user_data">
+    <dt><label for="user_login">Name:</label></dt>
+    <dd><%= f.text_field :login %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_email">Email:</label></dt>
+    <dd><%= f.text_field :email %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_cell">Cell Phone:</label></dt>
+    <dd><%= f.text_field :cell %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_extension">Work Phone:</label></dt>
+    <dd><%= f.text_field :extension %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_birthday">Birthday:</label></dt>
+    <dd><%= f.text_field :birthday %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_aim">AIM ID:</label></dt>
+    <dd><%= f.text_field :aim %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_yahoo">Yahoo ID:</label></dt>
+    <dd><%= f.text_field :yahoo %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_msn">MSN ID:</label></dt>
+    <dd><%= f.text_field :msn %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_portrait">Portrait:</label></dt>
+    <dd>
+      <% unless @user.portrait.blank? -%>
+      <div style="float:right; font-weight:bold; text-align:center;">
+        Current Portrait:<br/>
+        <%= link_to image_tag(custom_size_photo_url(:id => @user.portrait_id, :size => 100)), raw_photo_url(@user.portrait) %></div>
+      <% end -%>
+      <%= f.file_field :uploaded_portrait %>
+    </dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_password">Change Password:</label></dt>
+    <dd><%= f.password_field :password %></dd>
+    <div style="clear:both;"></div>
+    <dt><label for="user_password_confirmation">Confirm Password:</label></dt>
+    <dd><%= f.password_field :password_confirmation %></dd>
+    <div style="clear:both;"></div>
+
+    <dt><label for="user_bio">Bio:</label></dt>
+    <dd>
+      <%= f.text_area :bio %><br />
+    </dd>
+    <div style="clear:both;"></div>
+
+  </dl>
+  <p style="clear:both">
+    <%= submit_tag 'Update' %> or <%= link_to 'cancel', user_url(:id => @user) %>
+  </p>
+<% end -%>

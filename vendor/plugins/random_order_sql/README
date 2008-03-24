@@ -1,0 +1,5 @@
+# Random Order SQL
+
+Allows you to execute a find query and randomly order it.
+
+Usage: Model.find(:all, :order => :random)

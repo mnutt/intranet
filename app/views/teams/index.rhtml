@@ -1,0 +1,24 @@
+<% @title = "Teams" -%>
+
+<h1>Teams</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for team in @teams %>
+  <tr>
+    <td><%= link_to team.name, team_path(team) %></td>
+    <% if current_user and current_user.admin? %>
+      <td><%= link_to 'Edit', edit_team_path(team) %></td>
+    <td><%= link_to 'Destroy', team_path(team), :confirm => 'Are
+    you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if current_user and current_user.admin? %>
+  <%= link_to 'New team', new_team_path %>
+<% end %>

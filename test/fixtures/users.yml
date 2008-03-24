@@ -1,0 +1,32 @@
+quentin:
+  id: 1
+  login: Quentin Tarantino
+  email: quentin@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 4.days.ago.to_s :db %>
+  bio: I was here.
+  birthday: 1982-04-14
+  cell: 921-203-0493
+  extension: 123-456-7890
+  aim: qtarantino
+  yahoo: quentint
+  msn: quentarantino
+  admin: 1
+aaron:
+  id: 2
+  login: aaron
+  email: aaron@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activation_code: <%= Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join ) %>
+chad:
+  id: 3
+  login: chad
+  email: chad@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 4.days.ago.to_s :db %>

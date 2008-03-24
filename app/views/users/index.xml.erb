@@ -1,0 +1,7 @@
+<group expanded="1">
+  <title>LimeWire</title>
+
+  <% @users.each do |user| -%>
+    <buddy uri="AIM:<%= user.aim -%>:<%= user.login -%>"> <%= user.login -%> </buddy>
+  <% end -%>
+</group>

@@ -1,0 +1,22 @@
+<h1>Editing photo</h1>
+
+<%= error_messages_for :photo %>
+
+<div style="float:right;">
+  <%= image_tag custom_size_photo_url(:id => @photo.id, :size => 200) %>
+</div>
+
+<% form_for(:photo, :url => photo_path(@photo), :html => { :method => :put }) do |f| %>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>

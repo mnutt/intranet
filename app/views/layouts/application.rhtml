@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <% title = "Intranet" -%>
+    <% title += ": #{@title}" if @title -%>
+    <title><%= title -%></title>
+    <%= stylesheet_link_tag 'application', 'screen', 'humanmsg' %>
+    <%= javascript_include_tag 'prototype', 'effects', 'controls', 'lowpro', 'swfupload', 'transparent_messaging' %>
+  </head>
+  <body>
+    <div class="container">
+      <div id="header">
+        <div class="span-24 last">
+          <h1><%= link_to 'Intranet', '/', :id => 'header-link' %></h1>
+        </div>
+      </div>
+
+      <div id="menu">
+        <div class="span-16">
+          <%= render :partial => 'shared/menu' -%>
+        </div>
+        <div id="account" class="span-8 last">
+
+          <% if logged_in? -%>
+            <span>You are <%= link_to current_user.login, user_url(:id => current_user) %>
+              <% if current_user.admin? %>(admin)<% end %>
+            </span>
+            <span><%= link_to 'Logout',  logout_url %></span>
+          <% else -%>
+            <span><%= link_to 'Login',   login_url  %></span>
+            <span><%= link_to 'Register',  signup_url %></span>
+          <% end -%>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+
+      <hr/>
+
+      <div class="span-18">
+        <div id="body">
+          <% if flash[:notice] -%>
+          <script type="text/javascript">
+            Event.onReady(function() { return MessageLogger.setup(); });
+            Event.onReady(function() { return HumaneMessager.setup(MessageLogger, 1.0); }); //MessageLogger
+            Event.onReady(function() { HumaneMessager.displayMessage('<strong>Notice:</strong> <span class="indent"><%= flash[:notice] -%></span>');});
+          </script>
+          <% end -%>
+          <%= yield %>
+        </div>
+      </div>
+
+      <div id="sidebar" class="span-6 last">
+        <div id="search-box">
+          <% form_tag users_url, :method => :get, :id => 'user_search' do %>
+          <%= text_field_tag 'q', {} %> <%= submit_tag 'search' %>
+          <% end %>
+          <div style="clear:both;"></div>
+        </div>
+
+        <div class="alternate_formats">
+          <h3>Alternate Formats</h3>
+          <ul>
+            <li><%= link_to "vCards", users_url + ".vcf" -%></li>
+          </ul>
+        </div>
+
+        <div class="resources">
+          <h3>Resources</h3>
+          <ul>
+            <li><%= link_to "Doctors", doctors_url -%></li>
+            <li><%= link_to "Dentists", dentists_url -%></li>
+          </ul>
+        </div>
+
+        <div class="events">
+          <%= render :partial => 'shared/events' -%>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

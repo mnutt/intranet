@@ -1,0 +1,9 @@
+first:
+ id: 1
+ random_model_id: 1
+second:
+ id: 2
+ random_model_id: 2
+third:
+ id: 3
+ random_model_id: 3

@@ -1,0 +1,37 @@
+body {
+  margin: 0 !important;
+}
+
+#header {
+  height:63px;
+  background: #555 url(/images/header-bg.png);
+}
+
+#header h1 {
+  margin:0;
+  padding:0;
+  text-indent:-10000px;
+  width:318px;
+  height:63px;
+  background:url(/images/header.png) top left no-repeat;
+}
+
+#menu {
+  background-color: #DFEFDF;
+}
+
+hr {
+  display: none;
+}
+
+A:visited {
+  color:#44AA11;
+}
+
+A:link {
+  color:#117700;
+}
+
+A:hover: {
+  background-color:#ededed;
+}

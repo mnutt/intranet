@@ -1,0 +1,29 @@
+<% @title = "Teams: " + @team.name -%>
+<% @nav = "People" -%>
+
+<div class="span-18 last">
+  <%= render :partial => "users/teams" %>
+</div>
+
+<div style="float:right;"><%= image_tag @team.logo_url if @team.logo_url %></div>
+
+<div style="clear:both;"></div>
+
+<% if @team.users.find(:all, :conditions => {:former => false}).uniq.size > 0 %>
+  <ul id="users">
+    <%= render :partial => "users/user", :collection => @team.users.find(:all, :conditions => {:former => false}).uniq %>
+  </ul>
+<% else %>
+  This team does not have anyone working for it yet.
+<% end %>
+<!--
+<% @team.users.find(:all, :conditions => {:former => false}).uniq.each do |user| %>
+  <li class="user"><%= link_to user.login, user_path(user) %> is a <%= Position.find(:all, :conditions =>
+    ["team_id = ? and user_id = ?", @team.id, user.id]).map(&:title).join(", ") %></li>
+<% end %>
+-->
+<br/>
+<!--<% if current_user and current_user.admin? %>
+  <%= link_to 'Edit', edit_team_path(@team) %> |
+  <%= link_to 'Team List', teams_path %>
+<% end %>-->

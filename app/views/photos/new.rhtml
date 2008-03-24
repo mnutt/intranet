@@ -1,0 +1,51 @@
+<h1>Upload photos</h1>
+
+<script type="text/javascript">
+  var swfu;
+
+  window.onload = function() {
+
+  swfu = new SWFUpload({
+    debug: true,
+    create_ui: true,
+    upload_script : "<%= photos_path :method => 'post' -%>",
+    target : "SWFUploadTarget",
+    flash_path : "/flash/swfupload.swf",
+    allowed_filesize : 30720,   // 30 MB
+    allowed_filetypes : "*.*",
+    allowed_filetypes_description : "All files...",
+    browse_link_innerhtml : "Browse",
+    upload_link_innerhtml : "Upload queue",
+    browse_link_class : "swfuploadbtn browsebtn",
+    upload_link_class : "swfuploadbtn uploadbtn",
+    flash_loaded_callback : 'swfu.flashLoaded',
+    upload_file_queued_callback : "fileQueued",
+    upload_file_start_callback : 'uploadFileStart',
+    upload_progress_callback : 'uploadProgress',
+    upload_file_complete_callback : 'uploadFileComplete',
+    upload_file_cancel_callback : 'uploadFileCancelled',
+    upload_queue_complete_callback : 'uploadQueueComplete',
+    upload_error_callback : 'uploadError',
+    upload_cancel_callback : 'uploadCancel',
+    auto_upload : false
+  });
+
+};
+</script>
+
+<%= error_messages_for :photo %>
+
+<div id="SWFUploadTarget">
+  <% form_for(:photo, :url => photos_path, :html => {:multipart => true}) do |f| %>
+
+    <p>
+      <%= f.file_field "data" %>
+    </p>
+
+    <p>
+      <%= submit_tag "Upload" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to 'Back', photos_path %>

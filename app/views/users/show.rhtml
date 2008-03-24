@@ -1,0 +1,96 @@
+<% @title = "People: " + @user.login -%>
+<% @nav = "People" -%>
+
+<h1>
+<%=h @user.login %> <%= link_to image_tag("card.png"), user_path(@user) + ".vcf" -%>
+</h1>
+
+<div id="profile">
+<%= content_tag 'div', image_tag(custom_size_photo_url(:id => @user.portrait_id, :size => "300")), :id => 'portrait' unless @user.portrait_id.blank? %>
+</div>
+
+
+<dl class="user_data">
+<% unless @user.extension.blank? %>
+  <dt>Office Phone:</dt>
+  <dd><%= @user.formatted_extension %></dd>
+<% end %>
+
+<% unless @user.cell.blank? %>
+  <dt>Cell Phone:</dt>
+  <dd><%= @user.formatted_cell %></dd>
+<% end %>
+
+  <dt>Email:</dt>
+  <dd><%= auto_link_email_addresses(@user.email) %></dd>
+
+<% unless @user.aim.blank? %>
+  <dt>AIM ID:</dt>
+  <dd><a href="aim:goim?screenname=<%= @user.aim %>"><%= @user.aim %></a></dd>
+<% end %>
+
+<% unless @user.yahoo.blank? %>
+  <dt>Yahoo ID:</dt>
+  <dd><%= @user.yahoo %>
+<% end %>
+
+<% unless @user.msn.blank? %>
+  <dt>MSN ID:</dt>
+  <dd><%= @user.msn %></dt>
+<% end %>
+
+<% unless @user.birthday.nil? %>
+  <dt>Birthday:</dt>
+  <dd><%= @user.birthday.strftime("%B %e") %></dd>
+<% end %>
+</dl>
+
+
+<p id='bio'><%= RedCloth.new(@user.bio).to_html %></p>
+
+<% if current_user == @user or (current_user and current_user.admin?) %><p><%= link_to image_tag("wrench_orange.png")+' Edit', edit_user_path(@user) %></p><% end %>
+
+<div style="clear:both;"> &nbsp;</div>
+
+<h2> Photos </h2>
+<%= render :partial => "photos/thumb", :collection => @user.photos %>
+<div style="clear:both;"> &nbsp;</div>
+
+<h2> Positions </h2>
+<div id="positions-container">
+<% unless @user.positions.empty? %>
+  <% @user.positions.each do |position| %>
+  <div class="position" id="position-<%= position.id -%>">
+    <h3>Working on <%= link_to position.team.name, team_url(position.team) -%> as a <%= position.title -%></h3>
+    <% if current_user == @user or (current_user and current_user.admin?) %>
+    <p><%= RedCloth.new(position.description).to_html if position.description? -%></p>
+      <%= link_to_remote "Delete Position" ,
+                         :url => position_path(position),
+                         :method => 'delete',
+                         :success => "Element.remove($('position-"+position.id.to_s+"'));"%>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
+
+</div>
+<% if current_user == @user or (current_user and current_user.admin?) %>
+<div id="add_position">
+  <strong>Add Position:</strong>
+  <% form_remote_tag( :url => positions_path,
+                      :method => 'post',
+                      :update => 'positions-container',
+                      :success => "new Effect.Highlight('positions-container')",
+                      :position => 'bottom') do -%>
+    Working at
+      <%= select('position', 'team_id', Team.find(:all).map{ |c| [c.name, c.id] }) %>
+    as a
+      <%= text_field 'position', 'title' %>
+
+    <p>Job Description:<br/>
+    <%= text_area 'position', 'description', :style => 'width:98%' %></p><input type="submit"
+    value="Add">
+    <%= hidden_field_tag 'user_id', @user.id %>
+  <% end %>
+</div>
+<% end %>

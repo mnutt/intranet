@@ -1,0 +1,38 @@
+<li id="<%= user.dom_id %>" class="user" style="list-style-type: none;
+                                                margin-top: 1.5em;">
+  <div id="profile" class="span-2">
+    <%= content_tag 'div',
+                     image_tag(custom_size_photo_url(:id => user.portrait_id,
+                                                     :size => "70",
+                                                     :square => "t"),
+                               :alt => user.login),
+                     :class => 'portrait-thumb' unless user.portrait_id.blank? %>
+  </div>
+  <div class="user_title span-10">
+    <div style="font-size:2em; font-weight:bold;"><%= link_to user.login, user_url(:id => user.login.gsub(".", "")) %></div>
+    <div class="position">
+    <%= user.positions.collect{ |position|
+            output = ""
+            output << position.title
+            output << " at "
+            output << link_to(position.team.name, team_path(position.team))
+        }.join(", ") %>
+    </div>
+  </div>
+  <div class="user_contact span-5 last">
+    <div style="font-size:2em; font-weight:bold;">
+      <% unless user.extension.blank? -%>
+        <%= user.formatted_extension %>
+      <% else -%>
+        <%= user.formatted_cell %>
+      <% end -%>
+    </div>
+    <div class="address"><%= auto_link_email_addresses(user.email) %></div>
+    <% unless user.aim.blank? %>
+    <div style="font-weight:bold">AIM:
+      <a href="aim:goim?screenname=<%= user.aim %>"><%= user.aim %></a>
+    </div>
+    <% end %>
+  </div>
+  <div style="clear: both;"></div>
+</li>

@@ -1,0 +1,7 @@
+<% {"People" => '/', "Resources" => '/resources'}.each do |nav, link| -%>
+  <% if @nav and nav == @nav -%>
+    <span class="selected"><%= link_to nav, link -%></span>
+  <% else -%>
+    <span><%= link_to nav, link -%></span>
+  <% end -%>
+<% end -%>

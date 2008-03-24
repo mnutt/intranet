@@ -1,0 +1,32 @@
+<% @title = "Dentists" -%>
+<% @nav = "Resources" -%>
+
+<h1>Dentists</h1>
+
+<table id="dentists_table">
+  <tr>
+    <th>Name</th>
+    <th>In network</th>
+    <th>Address</th>
+    <th>Copay</th>
+    <th>Comments</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+<% for dentist in @dentists %>
+  <tr class="<%= cycle("even", "odd") -%>_table_row">
+    <td><%= link_to h(dentist.name), dentist_path(dentist) %></td>
+    <td><%=h dentist.in_network ? "Yes" : "No" %></td>
+    <td><%=h dentist.address %></td>
+    <td><%=h dentist.copay %></td>
+    <td><%=h dentist.comments %></td>
+    <td><%= link_to 'Edit', edit_dentist_path(dentist) %></td>
+    <td><%= link_to 'Delete', dentist_path(dentist), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to image_tag('add.png') + ' New dentist', new_dentist_path %>

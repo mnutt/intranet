@@ -1,0 +1,28 @@
+<% @title = "Doctors: #{h(@doctor.name)}" -%>
+<% @nav = "Resources" -%>
+
+<h1><%=h @doctor.name %>
+  <% if @doctor.specialty -%>
+    (<%=h @doctor.specialty -%>)
+  <% end -%>
+</h1>
+
+<p><b><%= @doctor.in_network ? "In network" : "Out of network" -%></b></p>
+
+<p>
+  <b>Address:</b>
+  <%=h @doctor.address %>
+</p>
+
+<p>
+  <b>Copay:</b>
+  $<%=h @doctor.copay %>
+</p>
+
+<div>
+  <div><b>Comments:</b></div>
+  <p><%=h @doctor.comments %></p>
+</div>
+
+<%= link_to 'Edit', edit_doctor_path(@doctor) %> |
+<%= link_to 'Back', doctors_path %>

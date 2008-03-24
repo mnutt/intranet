@@ -1,0 +1,20 @@
+<h3>From the <%= link_to "Google Calendar", SETTINGS['calendar_link'] -%></h3>
+
+<% if !@events.empty? -%>
+  <ul>
+    <% @events.each do |event| -%>
+      <li>
+        <div class="name"><%= event['task'].gsub("\\", "") -%></div>
+        <% if event['task'] =~ / birthday$/ -%>
+          <div class="when birthday <%= "inprogress" if event['start'] < Time.now -%>"><%= event['start'].strftime("%a, %b %e") -%></div>
+        <% elsif (event['end'] - event['start'] <= 86400) -%>
+          <div class="when <%= "inprogress" if event['start'] < Time.now -%>"><%= event_formatted_time(event['end']) -%></div>
+        <% else -%>
+          <div class="when <%= "inprogress" if event['start'] < Time.now -%>"><%= event['start'].to_s(:nice) -%> &ndash; <%= event['end'].to_s(:nice) -%></div>
+        <% end -%>
+      </li>
+    <% end -%>
+  </ul>
+<% else -%>
+  <p>There seems to be some issue with the google calendar at the moment.</p>
+<% end -%>

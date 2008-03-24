@@ -1,0 +1,31 @@
+# Logfile created on Wed Apr 26 18:36:30 EST 2006 by logger.rb/1.5.2.7
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite::Exceptions::SQLException: no such table: random_models: DROP TABLE random_models[0m
+  [4;35;1mSQL (0.180399)[0m   [0mCREATE TABLE random_models ("id" INTEGER PRIMARY KEY NOT NULL, "name" varchar(255)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite::Exceptions::SQLException: no such table: monkies: DROP TABLE monkies[0m
+  [4;35;1mSQL (0.007097)[0m   [0mCREATE TABLE monkies ("id" INTEGER PRIMARY KEY NOT NULL, "random_model_id" varchar(255)) [0m
+  [4;36;1mSQL (0.146763)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.006182)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000730)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+  [4;35;1mSQL (0.007370)[0m   [0mUPDATE schema_info SET version = 0[0m
+  [4;36;1mRandomModel Load (0.001003)[0m   [0;1mSELECT * FROM random_models ORDER BY RANDOM() [0m
+  [4;35;1mRandomModel Load (0.000570)[0m   [0mSELECT * FROM random_models LIMIT 1[0m
+  [4;36;1mSQL (0.006229)[0m   [0;1mDROP TABLE random_models[0m
+  [4;35;1mSQL (0.130512)[0m   [0mCREATE TABLE random_models ("id" INTEGER PRIMARY KEY NOT NULL, "name" varchar(255)) [0m
+  [4;36;1mSQL (0.008271)[0m   [0;1mDROP TABLE monkies[0m
+  [4;35;1mSQL (0.015859)[0m   [0mCREATE TABLE monkies ("id" INTEGER PRIMARY KEY NOT NULL, "random_model_id" varchar(255)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite::Exceptions::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000668)[0m   [0mPRAGMA table_info(schema_info)[0m
+  [4;36;1mSQL (0.006023)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+  [4;35;1mRandomModel Load (0.001001)[0m   [0mSELECT * FROM random_models ORDER BY RANDOM() [0m
+  [4;36;1mRandomModel Load (0.000568)[0m   [0;1mSELECT * FROM random_models LIMIT 1[0m
+  [4;36;1mSQL (0.005070)[0m   [0;1mDROP TABLE random_models[0m
+  [4;35;1mSQL (0.004012)[0m   [0mCREATE TABLE random_models ("id" INTEGER PRIMARY KEY NOT NULL, "name" varchar(255)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite::Exceptions::SQLException: no such table: horses: DROP TABLE horses[0m
+  [4;35;1mSQL (0.006377)[0m   [0mCREATE TABLE horses ("id" INTEGER PRIMARY KEY NOT NULL, "random_model_id" varchar(255)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite::Exceptions::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000667)[0m   [0mPRAGMA table_info(schema_info)[0m
+  [4;36;1mSQL (0.111213)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+  [4;35;1mRandomModel Load (0.000975)[0m   [0mSELECT * FROM random_models ORDER BY RANDOM() [0m
+  [4;36;1mRandomModel Load (0.000554)[0m   [0;1mSELECT * FROM random_models LIMIT 1[0m
+  [4;35;1mSQL (0.000604)[0m   [0mPRAGMA table_info(random_models)[0m
+  [4;36;1mHorse Load (0.000655)[0m   [0;1mSELECT * FROM horses WHERE (horses.random_model_id = 1) ORDER BY RANDOM() [0m

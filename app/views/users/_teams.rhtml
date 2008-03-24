@@ -1,0 +1,10 @@
+<% @team ||= nil -%>
+<div id="team_list">Filter by team:&nbsp;
+  <%= Team.find(:all).collect{ |team|
+    if @team == team
+      team.name
+    else
+      link_to team.name, team_path(team)
+    end
+  }.concat(@team.nil? ? ["Everyone"] : [link_to("Everyone", users_url)]).join("&nbsp; |  &nbsp;") %>
+</div>

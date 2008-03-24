@@ -1,0 +1,12 @@
+<%= start_form_tag :tag_url, :method => :post %>
+  <p>
+    <%= text_field_tag 'tag', @tags * ', ' %>
+    <%= submit_tag 'Tags' %>
+  </p>
+</form>
+<p>
+<%= tag_cloud(@tag_cloud) %>
+</p>
+<ul id="users" class="clearfix">
+<%= render :partial => "users/user", :collection => @users %>
+</ul>

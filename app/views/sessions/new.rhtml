@@ -1,0 +1,15 @@
+<% form_tag sessions_path do %>
+<dl class="user_data">
+  <dt><p><label for="login">Name:</label></dt>
+  <dd><%= text_field_tag 'login' %></dd>
+<div style="clear:both"></div>
+  <dt><label for="password">Password:</label></dt>
+  <dd><%= password_field_tag 'password' %></dd>
+<div style="clear:both;"></div>
+  <dt><label for="remember_me">Remember me:</label></dt>
+  <dd><%= check_box_tag 'remember_me', nil, true, { :style => "width:auto" } %></dd>
+</dl>
+<p style="clear:both;"><%= submit_tag 'Log in' %></p>
+<% end %>
+
+<p><%= link_to 'Forgot your password ?', reminder_url %></p>

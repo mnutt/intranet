@@ -1,0 +1,18 @@
+<% user ||= user_vcf -%>
+BEGIN:VCARD
+VERSION:2.1
+FN:<%= user.login %>
+N:<%= user.login.split(" ").last -%>;<%= user.login.split(" ")[0..user.login.split(" ").size - 2].join(";") %>
+TEL;work:<%= user.formatted_extension %>
+TEL;cell:<%= user.formatted_cell %>
+ORG:<%= user.positions.first.team.name unless user.positions.blank? %>
+TITLE:<%= user.positions.first.title unless user.positions.blank? %>
+EMAIL;TYPE=WORK:<%= user.email %>
+BDAY:<%= user.birthday.strftime("%Y-%m-%d") unless user.birthday.nil? %>
+X-AIM;TYPE=HOME:<%= user.aim %>
+<% unless user.portrait.nil? -%>
+<% photo = Base64.encode64(user.portrait.thumbnail(150, false)) -%>
+PHOTO;ENCODING=b;TYPE=PNG:<%= photo.collect{|p| p = " #{p}"}.to_s %>
+<% end -%>
+END:VCARD
+

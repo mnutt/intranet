@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @mark.user_id %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%=h @mark.photo_id %>
+</p>
+
+<p>
+  <b>X coord:</b>
+  <%=h @mark.x_coord %>
+</p>
+
+<p>
+  <b>Y coord:</b>
+  <%=h @mark.y_coord %>
+</p>
+
+
+<%= link_to 'Edit', edit_mark_path(@mark) %> |
+<%= link_to 'Back', marks_path %>

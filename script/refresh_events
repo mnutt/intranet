@@ -1,0 +1,10 @@
+#!/usr/bin/ruby
+root_path = File.join(File.dirname(__FILE__), '..')
+require "#{root_path}/config/environment.rb"
+require "#{root_path}/lib/google_cal"
+
+FileUtils.rm("#{root_path}/tmp/events.yaml") if File.exist?("#{root_path}/tmp/events.yaml")
+
+GoogleCal.retrieve_latest(15)
+# events = YAML::load_file(File.expand_path("#{root_path}/tmp/events.yaml"))
+# puts "Updated #{events.size} events."

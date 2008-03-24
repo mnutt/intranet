@@ -1,0 +1,1 @@
+<%= render :partial => 'user_vcf', :locals => { :user_vcf => @user } -%>

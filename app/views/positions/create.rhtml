@@ -1,0 +1,6 @@
+  <div class="position" id="position-<%= @position.id -%>">
+    <h3>Working for <%= @position.team.name -%> as <%= @position.title -%></h3>
+    <p><%= RedCloth.new(@position.description).to_html if @position.description? -%></p>
+    <%= link_to_remote "Delete Position" , :url => position_path(@position),
+    :method => 'delete', :success => "Element.remove($('position-"+@position.id.to_s+"'));"%>
+  </div>

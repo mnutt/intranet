@@ -1,0 +1,26 @@
+<h1>Listing marks</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Photo</th>
+    <th>X coord</th>
+    <th>Y coord</th>
+  </tr>
+  
+<% for mark in @marks %>
+  <tr>
+    <td><%=h mark.user_id %></td>
+    <td><%=h mark.photo_id %></td>
+    <td><%=h mark.x_coord %></td>
+    <td><%=h mark.y_coord %></td>
+    <td><%= link_to 'Show', mark_path(mark) %></td>
+    <td><%= link_to 'Edit', edit_mark_path(mark) %></td>
+    <td><%= link_to 'Destroy', mark_path(mark), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New mark', new_mark_path %>

@@ -1,0 +1,42 @@
+<h1>Editing doctor</h1>
+
+<%= error_messages_for :doctor %>
+
+<% form_for(:doctor, :url => doctor_path(@doctor), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>In network</b><br />
+    <%= f.check_box :in_network %>
+  </p>
+
+  <p>
+    <b>Address</b><br />
+    <%= f.text_field :address %>
+  </p>
+
+  <p>
+    <b>Copay</b><br />
+    <%= f.text_field :copay %>
+  </p>
+
+  <p>
+    <b>Comments</b><br />
+    <%= f.text_area :comments %>
+  </p>
+
+  <p>
+    <b>Specialty</b><br />
+    <%= f.text_field :specialty %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', doctor_path(@doctor) %> |
+<%= link_to 'Back', doctors_path %>

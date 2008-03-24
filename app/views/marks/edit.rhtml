@@ -1,0 +1,32 @@
+<h1>Editing mark</h1>
+
+<%= error_messages_for :mark %>
+
+<% form_for(:mark, :url => mark_path(@mark), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>User</b><br />
+    <%= f.text_field :user_id %>
+  </p>
+
+  <p>
+    <b>Photo</b><br />
+    <%= f.text_field :photo_id %>
+  </p>
+
+  <p>
+    <b>X coord</b><br />
+    <%= f.text_field :x_coord %>
+  </p>
+
+  <p>
+    <b>Y coord</b><br />
+    <%= f.text_field :y_coord %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', mark_path(@mark) %> |
+<%= link_to 'Back', marks_path %>

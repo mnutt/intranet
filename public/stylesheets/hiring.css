@@ -1,0 +1,38 @@
+#hr_statuses span.status_date {
+  float: right;
+}
+
+#hr_statuses div.status_wrapper {
+  background-color: #DDEEFF;
+  padding: .5em;
+  margin: .5em 0;
+}
+
+#hr_statuses h5 {
+  margin-bottom: auto;
+}
+
+#hr_statuses div.status {
+  clear: both;
+}
+
+#hr_statuses div.interview_status div.status_wrapper {
+  background-color: #DDEEFF;
+}
+
+#hr_statuses div.hired_status div.status_wrapper {
+  background-color: #DDEECC;
+}
+
+.comments {
+  text-indent: 0px;
+}
+
+.comment {
+  text-indent: -2em;
+  margin: 0px 2em;
+}
+
+.comment .author {
+  font-weight: bold;
+}

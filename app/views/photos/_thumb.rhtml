@@ -1,0 +1,7 @@
+<div class="photo_thumbnail">
+  <%= link_to image_tag(custom_size_photo_path(:id => thumb,
+                                               :size => '75',
+                                               :square => 't')),
+              photo_path(thumb),
+              :alt => thumb.name -%>
+</div>

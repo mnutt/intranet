@@ -1,0 +1,8 @@
+limewire:
+  id: 1
+  name: Lime Wire
+  description: We make p2p stuff.
+limespot:
+  id: 2
+  name: Lime Spot
+  description: The writable web!

@@ -1,0 +1,243 @@
+a img {
+  border: 0;
+}
+
+a img {
+  border: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0 0 0 1em;
+  list-style: none;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+  margin: 0em 0 .5em 0;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+#menu #account {
+  text-align: right;
+}
+
+#menu span {
+  padding: 0 1em 0 0;
+}
+
+#menu #account span {
+  padding: 0 0 0 1em;
+}
+
+#menu span.selected a {
+  color: #000;
+  text-decoration: none;
+}
+
+#menu {
+  font-weight: bold;
+}
+
+.portrait-thumb {
+  padding:10px;
+}
+
+#portrait {
+  float:right;
+  padding: 0 0 0 10px;
+}
+
+#sidebar ul {
+  list-style-type: none;
+  text-indent: 0;
+  margin-left: 0;
+}
+
+/* Users List */
+
+#team_sort {
+  margin-bottom: 1em;
+}
+
+#user_order {
+  text-align: right;
+  float:right;
+  margin-bottom: 1em;
+}
+
+/* User row */
+
+#users {
+  margin: 0 1em 0 0;
+}
+
+li.user {
+  display:block;
+  width: 100%;
+  overflow-y: hidden;
+  background-color:#FeFcFe;
+  border:1px solid #EEE;
+  margin-top:5px;
+  position:relative;
+  min-height: 82px;
+}
+
+li.user h2 {
+
+ }
+
+li.user a {
+  text-decoration:none;
+}
+
+li.user-listitem img {
+  display: none;
+}
+
+li.user .user_title {
+  padding-left: 10px;
+}
+
+li.user .position {
+  font-weight: bold;
+}
+
+.address {
+  font-size:1.2em;
+  font-weight:bold;
+}
+
+#user-footer {
+  padding-top: 20px;
+  margin-top: 20px;
+}
+#user-footer div {
+}
+
+#company_list {
+  margin-left:15px;
+  margin-right:-20px;
+}
+
+.pagination a {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+}
+.pagination a:hover {
+  background-color: black;
+  color: white;
+}
+
+#people_search input {
+  font-size: 150%;
+}
+
+#position_description {
+  width: 100%;
+  height: 9em;
+}
+
+#body p a img {
+  margin: 2px;
+}
+
+#body {
+  margin: 1em 1em 1em 0;
+}
+
+.photo_thumbnail {
+  padding: 5px;
+  float:left;
+}
+
+dl.user_data dt {
+  float: left;
+  font-weight: bold;
+  width: 10em;
+  line-height:2em;
+}
+
+dl.user_data dd {
+  margin-left:10em;
+  line-height: 2em;
+}
+
+dl.user_data dd > input, dl.user_data dd > textarea {
+  width:30em;
+  margin-bottom:1em;
+}
+
+dl.user_data dd input.checkbox {
+  width: auto;
+}
+
+.required {
+  color: #B00;
+}
+
+#add_position {
+  background-color:#F5F5F5;
+  padding:10px;
+  margin:10px 0px;
+}
+
+#search-box {
+  margin: 2em 0;
+}
+
+#search-box #q {
+  width: 12.4em;
+}
+
+/* EVENTS */
+
+.events {
+  padding-top: 0.7em;
+}
+
+.events ul {
+  padding: 0;
+  margin: 0 0 2em 0;
+}
+
+.events .name {
+  font-weight: bold;
+}
+
+.events .inprogress {
+  color: #069;
+}
+
+.events .birthday {
+  color: #900;
+}
+
+/* DOCTORS/DENTISTS */
+#doctors_table, #dentists_table {
+  width: 100%;
+  background-color: #FFF;
+}
+
+#doctors_table tr th,
+#dentists_table tr th {
+  background-color: #ecefec;
+}
+
+#doctors_table tr td,
+#dentists_table tr td {
+  padding: 3px;
+}
+
+table tr.odd_table_row {
+  background-color: #F3F6F3;
+}
+
+.events .when {
+  padding-bottom: 0.5em;
+}

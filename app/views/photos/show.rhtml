@@ -1,0 +1,25 @@
+<h1><%= @photo.name %> </h1>
+<%= image_tag(custom_size_photo_url(:id => @photo.id, :size => 600)) %>
+
+<p>
+  <b>Uploaded by:</b>
+  <%=h @photo.user.login %>
+</p>
+
+<% unless @photo.taken_at.blank? -%>
+<p>
+  <b>Taken at:</b>
+  <%=h @photo.taken_at %>
+</p>
+<% end -%>
+
+<p>
+  <%=h @photo.description %>
+</p>
+<% if session[:user] == @photo.user_id -%>
+  <%= button_to "Set as profile picture", set_photo_url(@photo) -%>
+<% end -%>
+
+<%= link_to 'Delete', photo_path(@photo), :method => 'delete' %> |
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>
