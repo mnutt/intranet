@@ -1,0 +1,12 @@
+<h2>
+  <%=h "#{@candidate.first_name} #{@candidate.last_name}" -%>
+  <% if @candidate.website -%>
+    (<%= link_to "website", @candidate.website -%>)
+  <% end -%>
+</h2>
+<div>for <%=h @candidate.position -%></div>
+
+<%= render :partial => 'hiring/comments/add_comment', :object => @candidate -%>
+
+<%= link_to 'Edit', edit_hiring_candidate_path(@candidate) %> |
+<%= link_to 'Back', hiring_candidates_path %>

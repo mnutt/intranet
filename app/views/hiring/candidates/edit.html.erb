@@ -1,0 +1,12 @@
+<h1>Editing candidate</h1>
+
+<%= error_messages_for :candidate %>
+
+<% form_for :candidate, :url => hiring_candidate_url(@candidate) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @candidate %> |
+<%= link_to 'Back', hiring_candidates_path %>

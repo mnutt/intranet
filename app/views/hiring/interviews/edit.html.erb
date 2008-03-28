@@ -1,0 +1,12 @@
+<h1>Editing interview</h1>
+
+<%= error_messages_for :interview %>
+
+<% form_for(@interview) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @interview %> |
+<%= link_to 'Back', interviews_path %>

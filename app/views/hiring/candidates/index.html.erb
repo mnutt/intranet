@@ -1,0 +1,18 @@
+<h1>Listing candidates</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for candidate in @candidates %>
+  <tr>
+    <td><%= link_to 'Show', candidate %></td>
+    <td><%= link_to 'Edit', edit_hiring_candidate_path(candidate) %></td>
+    <td><%= link_to 'Destroy', candidate, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New candidate', new_hiring_candidate_path %>

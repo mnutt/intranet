@@ -1,0 +1,15 @@
+<% commentable = add_comment -%>
+
+<% commentable.comments.each do |comment| -%>
+  <cite><%= comment.commenter.login -%> says:</cite>
+  <p><%=h comment.content -%></p>
+<% end -%>
+
+<% form_for(:comment, :url => hiring_comments_url) do |f| -%>
+  <%= f.label :content, "Add a comment" -%>
+  <div><%= f.text_area :content, :style => "height: 8em;" -%></div>
+
+  <%= f.hidden_field :commentable_id, :value => commentable.id -%>
+  <%= f.hidden_field :commentable_type, :value => commentable.class.to_s -%>
+  <%= submit_tag "Add" -%>
+<% end -%>
