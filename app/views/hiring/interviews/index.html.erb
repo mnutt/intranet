@@ -1,18 +1,16 @@
 <h1>Listing interviews</h1>
 
-<table>
-  <tr>
-  </tr>
+<ul>
 
 <% for interview in @interviews %>
-  <tr>
-    <td><%= link_to 'Show', interview %></td>
-    <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
-    <td><%= link_to 'Destroy', interview, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <li class="user">
+    <div style="font-size: 2em;">
+      <%= link_to "#{interview.candidate.name} on #{interview.pretty_date}", hiring_interview_path(interview) %>
+    </div>
+    <%= link_to 'Edit', edit_hiring_interview_path(interview) %> |
+    <%= link_to 'Delete', hiring_interview_path(interview), :confirm => 'Are you sure?', :method => :delete %>
+  </li>
 <% end %>
-</table>
+</ul>
 
 <br />
-
-<%= link_to 'New interview', new_interview_path %>

@@ -2,10 +2,10 @@
 
 <%= error_messages_for :comment %>
 
-<% form_for(@comment) do |f| %>
+<% form_for(hiring_comments_url) do |f| %>
   <p>
     <%= f.submit "Create" %>
   </p>
 <% end %>
 
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Back', hiring_comments_path %>

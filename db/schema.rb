@@ -2,7 +2,14 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 38) do
+ActiveRecord::Schema.define(:version => 44) do
+
+  create_table "attachments", :force => true do |t|
+    t.string   "attachable_type"
+    t.integer  "attachable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "candidates", :force => true do |t|
     t.string   "last_name"
@@ -12,6 +19,12 @@ ActiveRecord::Schema.define(:version => 38) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
+    t.string   "phone_number"
+    t.string   "email"
+    t.string   "resume_file_name"
+    t.string   "resume_content_type"
+    t.integer  "resume_file_size"
   end
 
   create_table "comments", :force => true do |t|
@@ -40,6 +53,19 @@ ActiveRecord::Schema.define(:version => 38) do
     t.integer  "solution_id"
     t.datetime "completed_at"
     t.datetime "provided_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "interviewings", :force => true do |t|
+    t.integer  "interview_id"
+    t.integer  "user_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "topics"
+    t.text     "notes"
+    t.string   "verdict"
+    t.string   "verdict_explanation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,17 +1,19 @@
 <h1>Listing candidates</h1>
 
-<table>
-  <tr>
-  </tr>
+<ul>
 
 <% for candidate in @candidates %>
-  <tr>
-    <td><%= link_to 'Show', candidate %></td>
-    <td><%= link_to 'Edit', edit_hiring_candidate_path(candidate) %></td>
-    <td><%= link_to 'Destroy', candidate, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <li class="user">
+    <div style="font-size: 2em; font-weight:bold;">
+      <%= link_to candidate.name, hiring_candidate_path(candidate) -%>
+    </div>
+
+    <%= link_to 'Edit', edit_hiring_candidate_path(candidate) %> |
+    <%= link_to 'Deleted', hiring_candidate_url(candidate), :confirm => 'Are you sure?', :method => :delete %>
+  </li>
 <% end %>
-</table>
+
+</ul>
 
 <br />
 

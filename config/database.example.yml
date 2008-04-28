@@ -2,14 +2,14 @@
 #   gem install sqlite-ruby
 development:
   adapter: mysql
-  database: intranet_dev
+  database: facebook_dev
   username: root
   password:
   host: localhost
 
 production:
   adapter: mysql
-  database: intranet_prod
+  database: facebook_prod
   username: root
   password:
   host: localhost
@@ -19,7 +19,7 @@ production:
 # Do not set this db to the same as development or production.
 test:
   adapter: mysql
-  database: intranet_test
+  database: facebook_test
   username: root
   password:
   host: localhost

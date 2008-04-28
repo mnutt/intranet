@@ -1,0 +1,13 @@
+<p>
+  <b>Attachable type:</b>
+  <%=h @attachment.attachable_type %>
+</p>
+
+<p>
+  <b>Attachable:</b>
+  <%=h @attachment.attachable_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_attachment_path(@attachment) %> |
+<%= link_to 'Back', attachments_path %>

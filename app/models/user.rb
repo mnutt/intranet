@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many    :marks
   has_many    :references, :through => :marks, :source => :photo
 
+  # hiring
+  has_many :comments
+
   def to_param
     login
   end

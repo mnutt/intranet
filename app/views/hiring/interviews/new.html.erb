@@ -1,11 +1,22 @@
-<h1>New interview</h1>
-
+<h2>New interview for <%= @interview.candidate.name -%></h2>
 <%= error_messages_for :interview %>
 
-<% form_for(@interview) do |f| %>
+<% form_for(:interview, :url => hiring_interviews_url) do |f| %>
+  <div>
+    <%= f.label :scheduled_at, "Interview Date" -%>
+    <div><%= calendar_date_select_tag "interview[scheduled_at]" -%></div>
+  </div>
+
+  <div>
+    <%= f.label :notes, "Notes" -%>
+    <div><%= f.text_area :notes, :style => 'height: 10em;' -%></div>
+  </div>
+
+  <%= f.hidden_field :candidate_id, :value => @interview.candidate.id -%>
+
   <p>
-    <%= f.submit "Create" %>
+    <%= f.submit "Create Interview" %>
   </p>
 <% end %>
 
-<%= link_to 'Back', interviews_path %>
+<%= link_to 'Back', hiring_interviews_path %>

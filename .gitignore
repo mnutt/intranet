@@ -1,2 +1,5 @@
 config/database.yml
 tmp
+log/*
+public/photos/*
+public/resumes/*

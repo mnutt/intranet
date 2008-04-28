@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  interview_id: 1
+  user_id: 1
+  start_time: 2008-03-28 23:12:14
+  end_time: 2008-03-28 23:12:14
+  topics: MyText
+  notes: MyText
+  verdict: MyString
+  verdict_explanation: MyString
+  created_at: 2008-03-28 23:12:14
+  updated_at: 2008-03-28 23:12:14
+two:
+  id: 2
+  interview_id: 1
+  user_id: 1
+  start_time: 2008-03-28 23:12:14
+  end_time: 2008-03-28 23:12:14
+  topics: MyText
+  notes: MyText
+  verdict: MyString
+  verdict_explanation: MyString
+  created_at: 2008-03-28 23:12:14
+  updated_at: 2008-03-28 23:12:14

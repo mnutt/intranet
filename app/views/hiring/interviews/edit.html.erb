@@ -1,12 +1,23 @@
-<h1>Editing interview</h1>
+<h1>Editing <%= @interview.candidate.name -%>'s interview</h1>
 
 <%= error_messages_for :interview %>
 
-<% form_for(@interview) do |f| %>
+<% form_for :interview, @interview, :url => hiring_interview_url(@interview), :html => {:method => :put} do |f| %>
+
+  <div>
+    <%= f.label :scheduled_at, "Interview Date" -%>
+    <div><%= calendar_date_select_tag "interview[scheduled_at]", @interview.pretty_date -%></div>
+  </div>
+
+  <div>
+    <%= f.label :notes, "Notes" -%>
+    <div><%= f.text_area :notes, :style => 'height: 10em;' -%></div>
+  </div>
+
   <p>
     <%= f.submit "Update" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @interview %> |
-<%= link_to 'Back', interviews_path %>
+<%= link_to 'Show', hiring_interview_url(@interview) %> |
+<%= link_to 'Back', hiring_interviews_path %>

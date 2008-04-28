@@ -2,7 +2,7 @@
 
 <%= error_messages_for :candidate %>
 
-<% form_for :candidate, :url => hiring_candidates_url do |f| %>
+<% form_for :candidate, :url => hiring_candidates_url, :html => { :multipart => true } do |f| %>
 <div>
   <%= f.label :first_name, "First Name" -%>
   <div><%= f.text_field :first_name -%></div>
@@ -21,6 +21,11 @@
 <div>
   <%= f.label :first_name, "Website" -%>
   <div><%= f.text_field :website -%></div>
+</div>
+
+<div>
+  <%= f.label :resume, "Resume" -%>
+  <div><%= f.file_field :resume -%></div>
 </div>
 
   <p>

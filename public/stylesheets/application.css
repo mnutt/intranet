@@ -241,3 +241,24 @@ table tr.odd_table_row {
 .events .when {
   padding-bottom: 0.5em;
 }
+
+
+/* OVERVIEW PAGE */
+.candidate .accepted {
+  color: #090;
+}
+
+.candidate .rejected {
+  color: #900;
+}
+
+.candidate .status {
+  text-transform: uppercase;
+  display: inline;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+#body ul {
+  list-style-type: none;
+}

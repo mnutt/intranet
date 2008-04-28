@@ -1,14 +1,14 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'interviews_controller'
+require File.dirname(__FILE__) + '/../../test_helper'
+require 'hiring/interviews_controller'
 
 # Re-raise errors caught by the controller.
-class InterviewsController; def rescue_action(e) raise e end; end
+class Hiring::InterviewsController; def rescue_action(e) raise e end; end
 
-class InterviewsControllerTest < Test::Unit::TestCase
+class Hiring::InterviewsControllerTest < Test::Unit::TestCase
   fixtures :interviews
 
   def setup
-    @controller = InterviewsController.new
+    @controller = Hiring::InterviewsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
@@ -20,16 +20,16 @@ class InterviewsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_get_new
-    get :new
+    get :new, :candidate_id => 1
     assert_response :success
   end
 
   def test_should_create_interview
     assert_difference('Interview.count') do
-      post :create, :interview => { }
+      post :create, :candidate_id => 1, :interview => { :scheduled_at => "tomorrow at 10am" }
     end
 
-    assert_redirected_to interview_path(assigns(:interview))
+    assert_redirected_to hiring_interview_path(assigns(:interview))
   end
 
   def test_should_show_interview
@@ -44,7 +44,7 @@ class InterviewsControllerTest < Test::Unit::TestCase
 
   def test_should_update_interview
     put :update, :id => 1, :interview => { }
-    assert_redirected_to interview_path(assigns(:interview))
+    assert_redirected_to hiring_interview_path(assigns(:interview))
   end
 
   def test_should_destroy_interview
@@ -52,6 +52,6 @@ class InterviewsControllerTest < Test::Unit::TestCase
       delete :destroy, :id => 1
     end
 
-    assert_redirected_to interviews_path
+    assert_redirected_to hiring_interviews_path
   end
 end

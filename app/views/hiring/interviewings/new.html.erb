@@ -1,0 +1,24 @@
+<h2>Add a person to <%= @interviewing.interview.candidate.name -%>'s interview</h2>
+<%= error_messages_for :interviewing %>
+
+<% form_for(:interviewing, :url => hiring_interview_interviewings_url(@interviewing.interview)) do |f| %>
+  <div>
+    <%= f.label :user, "Interviewer" -%>
+    <div>
+      <%= f.select :user_id, User.find(:all).map {|u| [u.login, u.id] } -%>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :time, "Time" -%>
+    <div><%= f.text_field :time, :value => @interviewing.pretty_time-%></div>
+  </div>
+
+  <%= f.hidden_field :interview_id, :value => @interviewing.interview_id -%>
+
+  <p>
+    <%= f.submit "Add Interviewer" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', hiring_interviews_path %>

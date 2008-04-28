@@ -1,0 +1,37 @@
+<h2>Edit <%= @interviewing.user.login -%> interviewing
+  <%= @interviewing.interview.candidate.name -%></h2>
+<%= error_messages_for :interviewing %>
+
+<% form_for(:interviewing, :url => hiring_interview_interviewing_url(@interviewing.interview, @interviewing), :html => {:method => :put}) do |f| %>
+  <div>
+    <%= f.label :user, "Interviewer" -%>
+    <div>
+      <%= f.select :user_id, User.find(:all).map {|u| [u.login, u.id] } -%>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :time, "Time" -%>
+    <div><%= f.text_field :time, :value => @interviewing.pretty_time -%></div>
+  </div>
+
+  <% if @interviewing.user == current_user -%>
+    <div>
+      <%= f.label :notes, "Notes" -%>
+      <div><%= f.text_area :notes -%></div>
+    </div>
+
+    <div>
+      <%= f.label :verdict, "Verdict" -%>
+      <div><%= f.select :verdict, {"Thumbs Up" => "thumb_up", "Thumbs Down" => "thumb_down", "Not Sure" => nil} -%></div>
+    </div>
+  <% end -%>
+
+  <%= f.hidden_field :interview_id, :value => @interviewing.interview_id -%>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', hiring_interviews_path %>

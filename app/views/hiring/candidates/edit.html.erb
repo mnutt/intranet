@@ -2,11 +2,36 @@
 
 <%= error_messages_for :candidate %>
 
-<% form_for :candidate, :url => hiring_candidate_url(@candidate) do |f| %>
+<% form_for :candidate, :url => hiring_candidate_url(@candidate), :html => {:method => :put, :multipart => true} do |f| %>
+<div>
+  <%= f.label :first_name, "First Name" -%>
+  <div><%= f.text_field :first_name -%></div>
+</div>
+
+<div>
+  <%= f.label :first_name, "Last Name" -%>
+  <div><%= f.text_field :last_name -%></div>
+</div>
+
+<div>
+  <%= f.label :position, "Position" -%>
+  <div><%= f.text_field :position -%></div>
+</div>
+
+<div>
+  <%= f.label :first_name, "Website" -%>
+  <div><%= f.text_field :website -%></div>
+</div>
+
+<div>
+  <%= f.label :resume, "Resume" -%>
+  <div><%= f.file_field :resume -%></div>
+</div>
+
   <p>
     <%= f.submit "Update" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @candidate %> |
+<%= link_to 'Show', hiring_candidate_url(@candidate) %> |
 <%= link_to 'Back', hiring_candidates_path %>

@@ -1,0 +1,36 @@
+<h1>Candidates Overview</h1>
+
+<div class="resume_pool span-8 border">
+  <h2>Resume Pool</h2>
+  <% if @resume_submitted.empty? -%>
+    <p>There are no resumes</p>
+  <% else -%>
+    <ul>
+      <%= render :partial => 'hiring/candidates/resume_row', :collection => @resume_submitted -%>
+    </ul>
+  <% end -%>
+</div>
+
+<div class="existing_candidates span-8 last">
+  <div class="pending_candidates">
+    <h2>Pending Candidates</h2>
+    <% if @pending.empty? -%>
+      <p>There are no pending candidates</p>
+    <% else -%>
+      <ul>
+        <%= render :partial => 'hiring/candidates/row', :collection => @pending -%>
+      </ul>
+    <% end -%>
+  </div>
+
+  <div class="archived_candidates">
+    <h2>Archived Candidates</h2>
+    <% if @archived.empty? -%>
+      <p>There are no archived candidates</p>
+    <% else -%>
+      <ul>
+        <%= render :partial => 'hiring/candidates/row', :collection => @archived -%>
+      </ul>
+    <% end -%>
+  </div>
+</div>

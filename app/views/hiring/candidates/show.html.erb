@@ -5,8 +5,42 @@
   <% end -%>
 </h2>
 <div>for <%=h @candidate.position -%></div>
+<% if @candidate.resume? -%>
+  <%= link_to image_tag('page.png', :width => 40, :height => 40), @candidate.resume.url -%> Resume
+<% end -%>
+
+<div id="activity">
+  <div class="span-4">
+    <h4>Phone screens</h4>
+    <% @candidate.screens.each do |screen| -%>
+    <% end -%>
+  </div>
+
+  <div class="span-4">
+    <h4>Interviews</h4>
+    <% @candidate.interviews.each do |interview| -%>
+      <%= link_to interview.pretty_date, hiring_interview_url(interview) -%>
+    <% end -%>
+  </div>
+
+  <div class="span-4">
+    <h4>Homework</h4>
+  </div>
+
+  <div class="span-4 last">
+    <h4>Post-interview</h4>
+  </div>
+</div>
+
+<div style="clear:both;"></div>
 
 <%= render :partial => 'hiring/comments/add_comment', :object => @candidate -%>
 
+<div>Add:</div>
+<ul>
+  <li><%= link_to "Interview", new_hiring_candidate_interview_url(@candidate) -%></li>
+  <li><%= link_to "Phone Screen", new_hiring_candidate_screen_url(@candidate) -%></li>
+  <li><%= link_to "Homework", new_hiring_candidate_homework_url(@candidate) -%></li>
+</ul>
 <%= link_to 'Edit', edit_hiring_candidate_path(@candidate) %> |
 <%= link_to 'Back', hiring_candidates_path %>

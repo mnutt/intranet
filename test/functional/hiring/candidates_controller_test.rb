@@ -1,14 +1,14 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'candidates_controller'
+require File.dirname(__FILE__) + '/../../test_helper'
+require 'hiring/candidates_controller'
 
 # Re-raise errors caught by the controller.
-class CandidatesController; def rescue_action(e) raise e end; end
+class Hiring::CandidatesController; def rescue_action(e) raise e end; end
 
-class CandidatesControllerTest < Test::Unit::TestCase
+class Hiring::CandidatesControllerTest < Test::Unit::TestCase
   fixtures :candidates
 
   def setup
-    @controller = CandidatesController.new
+    @controller = Hiring::CandidatesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
@@ -29,7 +29,7 @@ class CandidatesControllerTest < Test::Unit::TestCase
       post :create, :candidate => { }
     end
 
-    assert_redirected_to candidate_path(assigns(:candidate))
+    assert_redirected_to hiring_candidate_path(assigns(:candidate))
   end
 
   def test_should_show_candidate
@@ -44,7 +44,7 @@ class CandidatesControllerTest < Test::Unit::TestCase
 
   def test_should_update_candidate
     put :update, :id => 1, :candidate => { }
-    assert_redirected_to candidate_path(assigns(:candidate))
+    assert_redirected_to hiring_candidate_path(assigns(:candidate))
   end
 
   def test_should_destroy_candidate
@@ -52,6 +52,6 @@ class CandidatesControllerTest < Test::Unit::TestCase
       delete :destroy, :id => 1
     end
 
-    assert_redirected_to candidates_path
+    assert_redirected_to hiring_candidates_path
   end
 end

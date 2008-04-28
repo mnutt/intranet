@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :candidates
+  map.resources :attachments
 
   map.resources :dentists
 
@@ -20,11 +20,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :teams
 
   map.namespace(:hiring) do |hiring|
-    hiring.resources :interviews, :has_many => [:comments]
-    hiring.resources :candidates, :has_many => [:comments]
+    hiring.resources :interviews, :has_many => [:comments, :interviewings]
+    hiring.resources :candidates, :has_many => [:comments, :interviews, :screens, :homeworks]
     hiring.resources :screens,    :has_many => [:comments]
     hiring.resources :homeworks,  :has_many => [:comments]
     hiring.resources :comments
+    hiring.root :controller => 'hiring', :action => 'overview'
   end
 
   map.signup '/signup', :controller => 'users', :action => 'new'

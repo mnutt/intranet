@@ -5,7 +5,7 @@ require 'hiring/comments_controller'
 class Hiring::CommentsController; def rescue_action(e) raise e end; end
 
 class Hiring::CommentsControllerTest < Test::Unit::TestCase
-  fixtures :hiring_comments
+  fixtures :comments, :candidates
 
   def setup
     @controller = Hiring::CommentsController.new
@@ -16,20 +16,22 @@ class Hiring::CommentsControllerTest < Test::Unit::TestCase
   def test_should_get_index
     get :index
     assert_response :success
-    assert_not_nil assigns(:hiring_comments)
+    assert_not_nil assigns(:comments)
   end
 
   def test_should_get_new
-    get :new
+    get :new, :candidate_id => 1
     assert_response :success
   end
 
   def test_should_create_comment
-    assert_difference('Hiring::Comment.count') do
-      post :create, :comment => { }
+    assert_difference('Comment.count') do
+      post :create, :comment => { :commentable_type => 'Candidate',
+                                  :commentable_id => 1,
+                                  :commenter_id => 1 }
     end
 
-    assert_redirected_to comment_path(assigns(:comment))
+    assert_redirected_to hiring_candidate_path(assigns(:comment).commentable)
   end
 
   def test_should_show_comment
@@ -43,12 +45,13 @@ class Hiring::CommentsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_update_comment
-    put :update, :id => 1, :comment => { }
-    assert_redirected_to comment_path(assigns(:comment))
+    put :update, :id => 1, :comment => { :commentable_type => 'Candidate',
+                                         :commentable_id => Candidate.find(:first) }
+    assert_redirected_to hiring_candidate_path(assigns(:comment).commentable)
   end
 
   def test_should_destroy_comment
-    assert_difference('Hiring::Comment.count', -1) do
+    assert_difference('Comment.count', -1) do
       delete :destroy, :id => 1
     end
 
