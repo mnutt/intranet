@@ -1,30 +1,59 @@
 <h2>
   <%=h "#{@candidate.first_name} #{@candidate.last_name}" -%>
-  <% if @candidate.website -%>
-    (<%= link_to "website", @candidate.website -%>)
-  <% end -%>
 </h2>
-<div>for <%=h @candidate.position -%></div>
-<% if @candidate.resume? -%>
-  <%= link_to image_tag('page.png', :width => 40, :height => 40), @candidate.resume.url -%> Resume
-<% end -%>
 
-<div id="activity">
+<div>
+  <div class="span-8 border properties">
+    <div>
+      <span class="prop_name">Position</span>
+      <span class="prop_desc"><%=h @candidate.position -%></span>
+    </div>
+    <% if @candidate.resume? -%>
+      <div>
+        <span class="prop_name">Resume</span>
+        <span class="prop_desc"><%= link_to image_tag('page.png') + " Download (#{(@candidate.resume_file_size / 1000)}KB)", @candidate.resume.url -%></span>
+      </div>
+    <% end -%>
+    <% if @candidate.website -%>
+      <div>
+        <span class="prop_name">Website</span>
+        <span class="prop_desc"><%= link_to truncate(@candidate.website, 25), @candidate.website, :title => @candidate.website -%></span>
+      </div>
+    <% end -%>
+  </div>
+  <div class="span-8 last comments">
+    <%= render :partial => 'hiring/comments/add_comment', :object => @candidate, :locals => {:options => {:width => "full"}} -%>
+  </div>
+</div>
+
+<div style="clear:both;"></div>
+
+<div style="margin-top: 2em;" id="activity">
   <div class="span-4">
-    <h4>Phone screens</h4>
+    <h4>
+      Phone screens
+      <%= link_to image_tag('add.png'), new_hiring_candidate_screen_url(@candidate) -%>
+    </h4>
     <% @candidate.screens.each do |screen| -%>
+      <div><%= link_to screen.pretty_date, hiring_screen_url(screen) -%></div>
     <% end -%>
   </div>
 
   <div class="span-4">
-    <h4>Interviews</h4>
+    <h4>
+      Interviews
+      <%= link_to image_tag('add.png'), new_hiring_candidate_interview_url(@candidate) -%>
+    </h4>
     <% @candidate.interviews.each do |interview| -%>
-      <%= link_to interview.pretty_date, hiring_interview_url(interview) -%>
+      <div><%= link_to interview.pretty_date, hiring_interview_url(interview) -%></div>
     <% end -%>
   </div>
 
   <div class="span-4">
-    <h4>Homework</h4>
+    <h4>
+      Homework
+      <%= link_to image_tag('add.png'), new_hiring_candidate_homework_url(@candidate) -%>
+    </h4>
   </div>
 
   <div class="span-4 last">
@@ -34,13 +63,5 @@
 
 <div style="clear:both;"></div>
 
-<%= render :partial => 'hiring/comments/add_comment', :object => @candidate -%>
-
-<div>Add:</div>
-<ul>
-  <li><%= link_to "Interview", new_hiring_candidate_interview_url(@candidate) -%></li>
-  <li><%= link_to "Phone Screen", new_hiring_candidate_screen_url(@candidate) -%></li>
-  <li><%= link_to "Homework", new_hiring_candidate_homework_url(@candidate) -%></li>
-</ul>
 <%= link_to 'Edit', edit_hiring_candidate_path(@candidate) %> |
 <%= link_to 'Back', hiring_candidates_path %>

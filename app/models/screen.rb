@@ -1,10 +1,14 @@
 class Screen < ActiveRecord::Base
   belongs_to :candidate
-  belongs_to :user
+  belongs_to :screener
+
+  attr_accessor :time
 
   def pretty_time
-    starting = start_time.min == 0 ? start_time.strftime('%l%p') : start_time.strftime('%l:%M%p')
-    ending = end_time.min == 0 ? end_time.strftime('%l%p') : end_time.strftime('%l:%M%p')
-    "#{starting}-#{ending.strip}"
+    (scheduled_at.min == 0) ? scheduled_at.strftime('%l%p') : scheduled_at.strftime('%l:%M%p') if scheduled_at
+  end
+
+  def pretty_date
+    self.scheduled_at.strftime('%B %e, %Y') rescue nil
   end
 end

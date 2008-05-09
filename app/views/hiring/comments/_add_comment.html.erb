@@ -1,15 +1,25 @@
 <% commentable = add_comment -%>
+<% options ||= {} -%>
 
-<% commentable.comments.each do |comment| -%>
-  <cite><%= comment.commenter.login -%> says:</cite>
-  <p><%=h comment.content -%></p>
-<% end -%>
+<div class="comments">
+  <h4>Comments</h4>
+  <% if commentable.comments.empty? -%>
+  <p>There are no comments.</p>
+  <% else -%>
+    <% commentable.comments.each do |comment| -%>
+      <cite><%= comment.commenter.login -%> says:</cite>
+      <p><%=h comment.content -%></p>
+    <% end -%>
+  <% end -%>
+</div>
 
+<% if current_user -%>
 <% form_for(:comment, :url => hiring_comments_url) do |f| -%>
   <%= f.label :content, "Add a comment" -%>
-  <div><%= f.text_area :content, :style => "height: 8em;" -%></div>
+    <div><%= f.text_area :content, :style => "height: 8em; #{ 'width: 95%;' if options[:width] == 'full' }" -%></div>
 
   <%= f.hidden_field :commentable_id, :value => commentable.id -%>
   <%= f.hidden_field :commentable_type, :value => commentable.class.to_s -%>
   <%= submit_tag "Add" -%>
+<% end -%>
 <% end -%>

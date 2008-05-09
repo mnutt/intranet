@@ -1,6 +1,7 @@
 <% candidate = row -%>
 <li class="candidate">
   <%= link_to candidate.name, hiring_candidate_url(candidate) -%>
+  <% if candidate.comments.size > 0 -%>(<%= candidate.comments.size -%>)<% end -%>
   <% if candidate.status == "accepted" -%>
     <div class="accepted status">ACCEPTED</div>
   <% elsif candidate.status == "rejected" -%>

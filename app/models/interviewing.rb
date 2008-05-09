@@ -6,6 +6,7 @@ class Interviewing < ActiveRecord::Base
 
   before_save :set_time
   def set_time
+    return true unless time
     start_time, end_time = time.split("-")
     self.start_time = Chronic.parse("#{self.interview.pretty_date.gsub(',', '')} #{start_time}")
     self.end_time = Chronic.parse("#{self.interview.pretty_date.gsub(',', '')} #{end_time}")

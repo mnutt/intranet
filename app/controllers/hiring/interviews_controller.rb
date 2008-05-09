@@ -38,6 +38,33 @@ class Hiring::InterviewsController < ApplicationController
     @interview = Interview.find(params[:id])
   end
 
+  def order
+    @interview = Interview.find(params[:id])
+    start_time = @interview.interviewings.find(:first, :order => "start_time ASC").start_time
+    params[:interviewings].each do |interviewing_id|
+      iv = Interviewing.find interviewing_id
+      duration = iv.end_time - iv.start_time
+      iv.update_attributes({:start_time => start_time,
+                             :end_time => start_time + duration})
+      start_time = iv.end_time
+    end
+
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          page << "Sortable.destroy('interviewings');"
+          page['interviewings'].replace_html render(:partial => 'hiring/interviewings/row',
+                                                    :collection => @interview.interviewings)
+          page.sortable('interviewings',
+                        :method => :post,
+                        :url => order_hiring_interview_path(@interview),
+                        :handle => "drag")
+
+        end
+      end
+    end
+  end
+
   # POST /interviews
   # POST /interviews.xml
   def create

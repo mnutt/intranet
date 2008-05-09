@@ -15,7 +15,7 @@
   <div>
     <%= f.label :screener, "Screener" -%>
     <div>
-      <%= f.select :user_id, User.find(:all).map {|u| [u.login, u.id] } -%>
+      <%= f.select :screener_id, User.find(:all).map {|u| [u.login, u.id] } -%>
     </div>
     </div>
 

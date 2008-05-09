@@ -20,7 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :teams
 
   map.namespace(:hiring) do |hiring|
-    hiring.resources :interviews, :has_many => [:comments, :interviewings]
+    hiring.resources :interviews, :has_many => [:comments, :interviewings],
+                                  :member => { :order => :post }
     hiring.resources :candidates, :has_many => [:comments, :interviews, :screens, :homeworks]
     hiring.resources :screens,    :has_many => [:comments]
     hiring.resources :homeworks,  :has_many => [:comments]

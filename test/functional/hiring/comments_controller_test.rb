@@ -37,17 +37,19 @@ class Hiring::CommentsControllerTest < Test::Unit::TestCase
   def test_should_show_comment
     get :show, :id => 1
     assert_response :success
+    assert assigns(:comment) == Comment.find(1)
   end
 
   def test_should_get_edit
     get :edit, :id => 1
     assert_response :success
+    assert assigns(:comment) == Comment.find(1)
   end
 
   def test_should_update_comment
-    put :update, :id => 1, :comment => { :commentable_type => 'Candidate',
-                                         :commentable_id => Candidate.find(:first) }
-    assert_redirected_to hiring_candidate_path(assigns(:comment).commentable)
+    put :update, :candidate_id => 1, :comment => { :commentable_type => 'Candidate',
+                                                   :commentable_id => 1 }
+    assert_redirected_to hiring_candidate_path(Comment.find(1).commentable)
   end
 
   def test_should_destroy_comment

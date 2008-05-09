@@ -1,4 +1,6 @@
 class Hiring::CommentsController < ApplicationController
+  before_filter :login_required, :only => [:new, :create, :update]
+
   # GET /hiring_comments
   # GET /hiring_comments.xml
   def index
@@ -59,7 +61,6 @@ class Hiring::CommentsController < ApplicationController
   # PUT /hiring_comments/1.xml
   def update
     @comment = Comment.find(params[:id])
-
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
         flash[:notice] = 'Comment was successfully updated.'

@@ -1,22 +1,19 @@
-<h2><%= link_to @interview.candidate.name, hiring_candidate_url(@interview.candidate) -%> on
-  <%= @interview.scheduled_at.strftime('%B %e, %Y (%A)') -%></h2>
+<h2><%= link_to @interview.candidate.name, hiring_candidate_url(@interview.candidate) -%>:
+  Interviewing on <%= @interview.scheduled_at.strftime('%B %e, %Y (%A)') -%></h2>
 
 <p><%= @interview.notes -%></p>
 
 <ul id="interviewings">
-  <% @interview.interviewings.each do |interviewing| -%>
-  <li class="user" style="padding: 5px; background-color: <%= interviewing.verdict_color -%>">
-    <span style="font-size: 1.6em;"><%= interviewing.user.login -%></span>
-    <span style="position: absolute; top: 5px; right: 3em; font-size: 1.6em;"><%= interviewing.pretty_time -%></span>
-    <span style="position: absolute; top: 8px; right: 1em;">
-      <%= image_tag("#{h(interviewing.verdict)}.png") -%>
-    </span>
-    <p style="margin-top: 1em;"><%= interviewing.notes -%></p>
-    <span><%= link_to (current_user == interviewing.user) ? "edit or add notes" : "edit",
-                      edit_hiring_interview_interviewing_url(@interview, interviewing) -%></span>
-  </li>
-  <% end -%>
+  <%= render :partial => 'hiring/interviewings/row',
+             :collection => @interview.interviewings -%>
 </ul>
+
+<%= sortable_element 'interviewings',
+                     :method => :post,
+                     :url => order_hiring_interview_path(@interview),
+                     :handle => "drag"
+%>
+
 
 <%= link_to 'Edit', edit_hiring_interview_path(@interview) %> |
 <%= link_to 'Back', hiring_interviews_path %>

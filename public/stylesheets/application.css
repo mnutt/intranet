@@ -262,3 +262,27 @@ table tr.odd_table_row {
 #body ul {
   list-style-type: none;
 }
+
+/* CANDIDATE */
+.properties .prop_name {
+  width: 10em;
+  float: left;
+  clear: left;
+}
+
+.properties div {
+  clear: both;
+  border-bottom: 1px solid #DDD;
+  margin: 5px 3px;
+}
+
+.user .drag {
+  display: block;
+  background-color: #555;
+  padding: 2px;
+  text-align: center;
+  margin: 5px -5px -5px -5px;
+}
+.user .drag img {
+  vertical-align: middle;
+}
