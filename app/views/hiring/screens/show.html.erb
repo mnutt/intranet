@@ -1,0 +1,3 @@
+<h2><%= link_to @screen.candidate.name, hiring_candidate_url(@screen.candidate) -%>:
+  Screen on
+  <%= @screen.scheduled_at.strftime('%B %e, %Y (%A)') -%></h2>

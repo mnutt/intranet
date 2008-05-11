@@ -1,0 +1,17 @@
+<% interviewing = row -%>
+
+<li id="interviewing_<%= interviewing.id -%>" class="user" style="padding: 5px; background-color: <%= interviewing.verdict_color -%>">
+  <span style="font-size: 1.6em;"><%= interviewing.user.login -%></span>
+  <span style="position: absolute; top: 5px; right: 3em; font-size: 1.6em;"><%= interviewing.pretty_time -%></span>
+  <span style="position: absolute; top: 8px; right: 1em;">
+    <% if interviewing.verdict -%>
+      <%= image_tag("#{h(interviewing.verdict)}.png") -%>
+    <% end -%>
+  </span>
+  <p style="margin-top: 1em;"><%= interviewing.notes -%></p>
+  <span><%= link_to (current_user == interviewing.user) ? "edit or add notes" : "edit",
+                    edit_hiring_interview_interviewing_url(@interview,
+                                                           interviewing) -%></span>
+  <div style="clear: both;"></div>
+  <span class="drag"><%= image_tag('arrow_switch.png', :alt => "Drag to reorder") -%></span>
+</li>
