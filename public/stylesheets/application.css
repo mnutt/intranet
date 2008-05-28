@@ -286,3 +286,21 @@ table tr.odd_table_row {
 .user .drag img {
   vertical-align: middle;
 }
+
+/* CANDIDATE ACTIVITY */
+#activity div {
+  padding: 0.8em 1em;
+  margin: 0.2em 0;
+}
+
+#activity div.interview {
+  background-color: #CDE;
+}
+
+#activity div.screen {
+  background-color: #EDC;
+}
+
+#activity div.homework {
+  background-color: #CED;
+}

@@ -2,6 +2,7 @@ class Candidate < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :interviews
   has_many :screens
+  has_many :homeworks
 
   has_attached_file :resume
 
@@ -38,14 +39,6 @@ class Candidate < ActiveRecord::Base
   end
 
   def activity
-    activity = []
-    self.interviews.each do |interview|
-      item = { :type => :interview,
-               :text => "Interview",
-               :object => interview,
-               :date => interview.scheduled_at }
-      activity << item
-    end
-    activity
+    @activity ||= [interviews + homeworks + screens].flatten.compact.sort_by { |a| a.scheduled_at || a.created_at }
   end
 end

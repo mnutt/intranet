@@ -1,10 +1,22 @@
 class Interviewing < ActiveRecord::Base
   belongs_to :interview
   belongs_to :user
+  has_many :reminders, :as => :remindable, :dependent => :destroy
 
   attr_accessor :time
 
   before_save :set_time
+  # after_save :add_reminder
+
+  def update_reminder
+    if self.user.wants_reminder?
+      self.reminders.create(:user => self.user,
+                            :remind_time => self.user.reminder_for(start_time),
+                            :transport => self.user.reminder_transport,
+                            :message => "Interview at #{start_time.strftime('%H%m')}")
+    end
+  end
+
   def set_time
     return true unless time
     start_time, end_time = time.split("-")

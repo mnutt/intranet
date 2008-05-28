@@ -3,61 +3,37 @@
 </h2>
 
 <div>
-  <div class="span-8 border properties">
-    <div>
-      <span class="prop_name">Position</span>
-      <span class="prop_desc"><%=h @candidate.position -%></span>
+  <div class="span-8 border">
+    <div class="properties">
+      <div>
+        <span class="prop_name">Position</span>
+        <span class="prop_desc"><%=h @candidate.position -%></span>
+      </div>
+      <% if @candidate.resume? -%>
+        <div>
+          <span class="prop_name">Resume</span>
+          <span class="prop_desc"><%= link_to image_tag('page.png') + " Download (#{(@candidate.resume_file_size / 1000)}KB)", @candidate.resume.url -%></span>
+        </div>
+      <% end -%>
+      <% if @candidate.website -%>
+        <div>
+          <span class="prop_name">Website</span>
+          <span class="prop_desc"><%= link_to truncate(@candidate.website, 25), @candidate.website, :title => @candidate.website -%></span>
+        </div>
+      <% end -%>
     </div>
-    <% if @candidate.resume? -%>
-      <div>
-        <span class="prop_name">Resume</span>
-        <span class="prop_desc"><%= link_to image_tag('page.png') + " Download (#{(@candidate.resume_file_size / 1000)}KB)", @candidate.resume.url -%></span>
-      </div>
-    <% end -%>
-    <% if @candidate.website -%>
-      <div>
-        <span class="prop_name">Website</span>
-        <span class="prop_desc"><%= link_to truncate(@candidate.website, 25), @candidate.website, :title => @candidate.website -%></span>
-      </div>
-    <% end -%>
+    <div id="add_actions" style="margin: 2em 0;">
+      Add
+      <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Phone Screen", new_hiring_candidate_screen_url(@candidate) -%></span>
+      <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Interview", new_hiring_candidate_interview_url(@candidate) -%></span>
+      <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Homework", new_hiring_candidate_homework_url(@candidate) -%></span>
+    </div>
+    <div id="activity">
+      <%= render :partial => "activity", :object => @candidate.activity -%>
+    </div>
   </div>
   <div class="span-8 last comments">
     <%= render :partial => 'hiring/comments/add_comment', :object => @candidate, :locals => {:options => {:width => "full"}} -%>
-  </div>
-</div>
-
-<div style="clear:both;"></div>
-
-<div style="margin-top: 2em;" id="activity">
-  <div class="span-4">
-    <h4>
-      Phone screens
-      <%= link_to image_tag('add.png'), new_hiring_candidate_screen_url(@candidate) -%>
-    </h4>
-    <% @candidate.screens.each do |screen| -%>
-      <div><%= link_to screen.pretty_date, hiring_screen_url(screen) -%></div>
-    <% end -%>
-  </div>
-
-  <div class="span-4">
-    <h4>
-      Interviews
-      <%= link_to image_tag('add.png'), new_hiring_candidate_interview_url(@candidate) -%>
-    </h4>
-    <% @candidate.interviews.each do |interview| -%>
-      <div><%= link_to interview.pretty_date, hiring_interview_url(interview) -%></div>
-    <% end -%>
-  </div>
-
-  <div class="span-4">
-    <h4>
-      Homework
-      <%= link_to image_tag('add.png'), new_hiring_candidate_homework_url(@candidate) -%>
-    </h4>
-  </div>
-
-  <div class="span-4 last">
-    <h4>Post-interview</h4>
   </div>
 </div>
 

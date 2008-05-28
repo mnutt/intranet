@@ -5,7 +5,7 @@
   <div>
     <%= f.label :user, "Interviewer" -%>
     <div>
-      <%= f.select :user_id, User.find(:all).map {|u| [u.login, u.id] } -%>
+      <%= f.select :user_id, @user_choices  -%>
     </div>
   </div>
 

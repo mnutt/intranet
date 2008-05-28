@@ -1,8 +1,16 @@
 <% interviewing = row -%>
 
 <li id="interviewing_<%= interviewing.id -%>" class="user" style="padding: 5px; background-color: <%= interviewing.verdict_color -%>">
-  <span style="font-size: 1.6em;"><%= interviewing.user.login -%></span>
-  <span style="position: absolute; top: 5px; right: 3em; font-size: 1.6em;"><%= interviewing.pretty_time -%></span>
+  <span style="font-size: 1.6em;">
+    <% if interviewing.is_other -%>
+      Lunch
+    <% else -%>
+      <%= interviewing.user.login -%>
+    <% end -%>
+  </span>
+  <span style="position: absolute; top: 5px; right: 3em; font-size: 1.6em;">
+    <%= interviewing.pretty_time -%>
+  </span>
   <span style="position: absolute; top: 8px; right: 1em;">
     <% if interviewing.verdict -%>
       <%= image_tag("#{h(interviewing.verdict)}.png") -%>

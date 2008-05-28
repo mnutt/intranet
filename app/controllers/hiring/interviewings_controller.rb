@@ -35,6 +35,9 @@ class Hiring::InterviewingsController < ApplicationController
       @interviewing.end_time = Chronic.parse("tomorrow at 12pm")
     end
 
+    @user_choices = User.find(:all).map {|u| [u.login, u.id] }
+    @user_choices.unshift(["Lunch", 0])
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @interviewing }
@@ -50,6 +53,8 @@ class Hiring::InterviewingsController < ApplicationController
   # POST /interviewings.xml
   def create
     @interviewing = Interviewing.new(params[:interviewing])
+    @interviewing.is_other = true if params[:interviewing] and params[:interviewing][:user_id] == "0"
+
 
     respond_to do |format|
       if @interviewing.save
