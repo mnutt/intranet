@@ -13,7 +13,8 @@
                      :url => order_hiring_interview_path(@interview),
                      :handle => "drag"
 %>
-
-
+<div>
+  <%= link_to "#{image_tag('add.png')} Add Interviewer", new_hiring_interview_interviewing_url(@interview) -%>
+</div>
 <%= link_to 'Edit', edit_hiring_interview_path(@interview) %> |
 <%= link_to 'Back', hiring_interviews_path %>
