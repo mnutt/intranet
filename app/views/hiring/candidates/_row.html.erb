@@ -6,14 +6,5 @@
     <div class="accepted status">ACCEPTED</div>
   <% elsif candidate.status == "rejected" -%>
     <div class="rejected status">REJECTED</div>
-  <% elsif candidate.status == "pending" -%>
-    <% latest_activity = candidate.activity.sort_by{|c| c[:date] }.reverse -%>
-    <% if !latest_activity.empty? and latest_activity.first[:text] == "Interview" -%>
-      <% if latest_activity.first[:date] > Time.now -%>
-        <div class="status">Interview Scheduled</div>
-      <% else -%>
-        <div class="status">Interviewed</div>
-      <% end -%>
-    <% end -%>
   <% end -%>
 </li>

@@ -1,0 +1,3 @@
+<% activity.each do |item| -%>
+  <%= render :partial => "hiring/#{item.class.to_s.downcase.pluralize}/row", :object => item -%>
+<% end -%>

@@ -1,3 +1,12 @@
 <h2><%= link_to @screen.candidate.name, hiring_candidate_url(@screen.candidate) -%>:
   Screen on
   <%= @screen.scheduled_at.strftime('%B %e, %Y (%A)') -%></h2>
+<p>Screened by <%= link_to @screen.screener.login,
+                   user_url(@screen.screener) -%></p>
+<h3>Notes:</h3>
+
+<p class="notes">
+  <%=h @screen.notes or "No notes." -%>
+</p>
+
+<%= link_to 'Edit', edit_hiring_screen_path(@screen) %>

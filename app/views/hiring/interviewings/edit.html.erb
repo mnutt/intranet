@@ -1,13 +1,18 @@
-<h2>Edit <%= @interviewing.user.login -%> interviewing
-  <%= @interviewing.interview.candidate.name -%></h2>
+<% if @interviewing.is_other -%>
+  <h2>Edit Lunch for <%= @interviewing.interview.candidate.name -%></h2>
+<% else -%>
+  <h2>Edit <%= @interviewing.user.login -%> interviewing <%= @interviewing.interview.candidate.name -%></h2>
+<% end -%>
 <%= error_messages_for :interviewing %>
 
 <% form_for(:interviewing, :url => hiring_interview_interviewing_url(@interviewing.interview, @interviewing), :html => {:method => :put}) do |f| %>
   <div>
-    <%= f.label :user, "Interviewer" -%>
-    <div>
-      <%= f.select :user_id, User.find(:all).map {|u| [u.login, u.id] } -%>
-    </div>
+    <% if !@interviewing.is_other -%>
+      <%= f.label :user, "Interviewer" -%>
+      <div>
+        <%= f.select :user_id, User.find(:all).map {|u| [u.login, u.id] } -%>
+      </div>
+    <% end -%>
   </div>
 
   <div>

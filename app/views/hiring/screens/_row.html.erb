@@ -1,0 +1,6 @@
+<% screen = row -%>
+<div class="screen">
+  <b>Phone screen</b> on <%= link_to screen.pretty_date,
+                         hiring_screen_url(screen) -%>
+  at <b><%= screen.pretty_time -%></b>
+</div>

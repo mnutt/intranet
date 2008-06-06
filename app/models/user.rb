@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_many    :photos
   has_many    :marks
   has_many    :references, :through => :marks, :source => :photo
+  has_many    :reminders
 
   # hiring
   has_many :comments
