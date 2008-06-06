@@ -1,6 +1,6 @@
 class Screen < ActiveRecord::Base
   belongs_to :candidate
-  belongs_to :screener
+  belongs_to :screener, :class_name => 'User'
 
   attr_accessor :time
 

@@ -1,0 +1,28 @@
+<h1>Editing <%= @screen.candidate.name -%>'s phone screen</h1>
+
+<%= error_messages_for :screen %>
+
+<% form_for :screen, @screen, :url => hiring_screen_url(@screen), :html => {:method => :put} do |f| %>
+
+  <div>
+    <%= f.label :scheduled_at, "Screen Date" -%>
+    <div><%= calendar_date_select_tag "screen[scheduled_at]", @screen.pretty_date -%></div>
+  </div>
+
+  <div>
+    <%= f.label :time, "Time" -%>
+    <div><%= f.text_field :time, :value => @screen.pretty_time -%></div>
+  </div>
+
+  <div>
+    <%= f.label :notes, "Notes" -%>
+    <div><%= f.text_area :notes, :style => 'height: 10em;' -%></div>
+  </div>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', hiring_screen_url(@screen) %> |
+<%= link_to 'Back', hiring_screens_path %>
