@@ -1,5 +1,10 @@
 <h1>Candidates Overview</h1>
 
+<div class="nav">
+  <%= link_to "All Candidates", hiring_candidates_url -%> &middot;
+  <%= link_to "Add Candidate", new_hiring_candidate_url -%>
+</div>
+
 <div class="resume_pool span-8 border">
   <h2>Resume Pool</h2>
   <% if @resume_submitted.empty? -%>

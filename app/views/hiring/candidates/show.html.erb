@@ -5,6 +5,7 @@
 <div>
   <div class="span-8 border">
     <div class="properties">
+      <h4>About</h4>
       <div>
         <span class="prop_name">Position</span>
         <span class="prop_desc"><%=h @candidate.position -%></span>
@@ -22,18 +23,21 @@
         </div>
       <% end -%>
     </div>
-    <div id="add_actions" style="margin: 2em 0;">
-      Add
-      <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Phone Screen", new_hiring_candidate_screen_url(@candidate) -%></span>
-      <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Interview", new_hiring_candidate_interview_url(@candidate) -%></span>
-      <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Homework", new_hiring_candidate_homework_url(@candidate) -%></span>
-    </div>
-    <div id="activity">
-      <%= render :partial => "activity", :object => @candidate.activity -%>
+    <div class="comments" style="margin-top: 2em;">
+      <%= render :partial => 'hiring/comments/add_comment', :object => @candidate, :locals => {:options => {:width => "full"}} -%>
     </div>
   </div>
-  <div class="span-8 last comments">
-    <%= render :partial => 'hiring/comments/add_comment', :object => @candidate, :locals => {:options => {:width => "full"}} -%>
+  <div class="span-9 last">
+    <div id="activity" style="margin-left: 5px;">
+      <h4>Candidate History</h4>
+      <%= render :partial => "activity", :object => @candidate.activity -%>
+      <div id="add_actions" style="margin: 2em 0;">
+        Add
+        <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Phone Screen", new_hiring_candidate_screen_url(@candidate) -%></span>
+        <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Interview", new_hiring_candidate_interview_url(@candidate) -%></span>
+        <span style="margin-left: 0.8em;"><%= link_to image_tag('add.png') + " Homework", new_hiring_candidate_homework_url(@candidate) -%></span>
+      </div>
+    </div>
   </div>
 </div>
 
