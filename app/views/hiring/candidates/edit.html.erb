@@ -28,6 +28,11 @@
   <div><%= f.file_field :resume -%></div>
 </div>
 
+<div>
+  <%= f.label :status, "Status" -%>
+  <div><%= f.select :status, ["new", "accepted", "rejected", "pending"] -%></div>
+</div>
+
   <p>
     <%= f.submit "Update" %>
   </p>

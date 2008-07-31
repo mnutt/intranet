@@ -1,5 +1,7 @@
 <h2>
   <%=h "#{@candidate.first_name} #{@candidate.last_name}" -%>
+  <%= link_to image_tag('wrench_orange.png'), edit_hiring_candidate_path(@candidate),
+              :title => "Edit" -%>
 </h2>
 
 <div>
@@ -16,7 +18,7 @@
           <span class="prop_desc"><%= link_to image_tag('page.png') + " Download (#{(@candidate.resume_file_size / 1000)}KB)", @candidate.resume.url -%></span>
         </div>
       <% end -%>
-      <% if @candidate.website -%>
+      <% if @candidate.website and !@candidate.website.blank? -%>
         <div>
           <span class="prop_name">Website</span>
           <span class="prop_desc"><%= link_to truncate(@candidate.website, 25), @candidate.website, :title => @candidate.website -%></span>
@@ -41,7 +43,8 @@
   </div>
 </div>
 
-<div style="clear:both;"></div>
+<div style="clear:both; margin-bottom:2em;"></div>
+
 
 <%= link_to 'Edit', edit_hiring_candidate_path(@candidate) %> |
 <%= link_to 'Back', hiring_candidates_path %>

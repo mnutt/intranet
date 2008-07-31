@@ -10,7 +10,7 @@ class Candidate < ActiveRecord::Base
     find(:all,
          :limit => size,
          :order => 'created_at DESC',
-         :conditions => {:status => nil})
+         :conditions => {:status => "new"})
   end
 
   def self.pending(size=20)
