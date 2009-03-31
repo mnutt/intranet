@@ -1,8 +1,8 @@
 <h3>From the <%= link_to "Google Calendar", SETTINGS['calendar_link'] -%></h3>
-
 <% if !@events.empty? -%>
   <ul>
     <% @events.each do |event| -%>
+      <% next if event.nil? -%>
       <li>
         <div class="name"><%= event['task'].gsub("\\", "") -%></div>
         <% if event['task'] =~ / birthday$/ -%>
