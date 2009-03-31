@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
       redirect_to '/'
       flash[:notice] = "Logged in successfully"
     else
+      flash[:notice] = "There was a problem logging you in.  Wrong username/password?"
       render :action => 'new'
     end
   end
