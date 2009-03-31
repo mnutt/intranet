@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
     tag.tags 'tags/*tags'
   end
 
+  map.out    '/out', :controller => 'events', :action => 'out'
   map.connect '/index.xml', :controller => 'users', :format => 'xml', :action => 'index'
 
   map.connect ':controller/:action/:id'
