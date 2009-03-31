@@ -5,7 +5,7 @@
     <% title = "Intranet" -%>
     <% title += ": #{@title}" if @title -%>
     <title><%= title -%></title>
-    <%= stylesheet_link_tag 'application', 'screen', 'humanmsg' %>
+    <%= stylesheet_link_tag 'application', 'screen', 'humanmsg', 'lime' %>
     <%= javascript_include_tag 'prototype', 'effects', 'controls', 'dragdrop', 'lowpro', 'swfupload', 'transparent_messaging' %>
     <%= calendar_date_select_includes nil %>
 
@@ -44,7 +44,7 @@
           <% if flash[:notice] -%>
           <script type="text/javascript">
             Event.onReady(function() { return MessageLogger.setup(); });
-            Event.onReady(function() { return HumaneMessager.setup(MessageLogger, 1.0); }); //MessageLogger
+            Event.onReady(function() { return HumaneMessager.setup(MessageLogger, 3.0); }); //MessageLogger
             Event.onReady(function() { HumaneMessager.displayMessage('<strong>Notice:</strong> <span class="indent"><%= flash[:notice] -%></span>');});
           </script>
           <% end -%>
