@@ -1,0 +1,26 @@
+<% @title = "People" -%>
+<% @nav = "People" -%>
+
+<div style="clear:both;"></div>
+
+<div id="team_sort" class="span-9">
+  <%= render :partial => "teams" %>
+</div>
+
+<div id="user_order" class="span-8 last">
+  Order by: <%= link_to 'First Name', params.merge(:order => 'first') %> &nbsp;|
+  &nbsp;<%= link_to 'Last Name', params.merge(:order => 'last') %> &nbsp;|
+  &nbsp;<%= link_to 'Newest',    params.merge(:order => 'newest') %><br />
+</div>
+
+<div style="clear:both;"></div>
+
+<ul id="users" class="clearfix">
+<% if @users.size > 0 %>
+  <%= render :partial => "user", :collection => @users %>
+<% else %>
+  Sorry, there isn't anybody here right now.
+<% end %>
+</ul>
+
+<%= render :partial => 'user_footer' %>

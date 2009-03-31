@@ -9,7 +9,7 @@
                      :class => 'portrait-thumb' unless user.portrait_id.blank? %>
   </div>
   <div class="user_title span-10">
-    <div style="font-size:2em; font-weight:bold;"><%= link_to h(user.login), user_url(:id => user.login.gsub(".", "")) %></div>
+    <div style="font-size:2em; font-weight:bold;"><%= link_to user.login, user_url(:id => user.login.gsub(".", "")) %></div>
     <div class="position">
     <%= user.positions.collect{ |position|
             output = ""
@@ -22,15 +22,15 @@
   <div class="user_contact span-5 last">
     <div style="font-size:2em; font-weight:bold;">
       <% unless user.extension.blank? -%>
-        <%=h user.formatted_extension %>
+        <%= user.formatted_extension %>
       <% else -%>
-        <%=h user.formatted_cell %>
+        <%= user.formatted_cell %>
       <% end -%>
     </div>
     <div class="address"><%= auto_link_email_addresses(user.email) %></div>
     <% unless user.aim.blank? %>
     <div style="font-weight:bold">AIM:
-      <a href="aim:goim?screenname=<%= user.aim %>"><%=h user.aim %></a>
+      <a href="aim:goim?screenname=<%= user.aim %>"><%= user.aim %></a>
     </div>
     <% end %>
   </div>

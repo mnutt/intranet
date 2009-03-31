@@ -13,12 +13,12 @@
 <dl class="user_data">
 <% unless @user.extension.blank? %>
   <dt>Office Phone:</dt>
-  <dd><%= @user.formatted_extension %></dd>
+  <dd><%=h @user.formatted_extension %></dd>
 <% end %>
 
 <% unless @user.cell.blank? %>
   <dt>Cell Phone:</dt>
-  <dd><%= @user.formatted_cell %></dd>
+  <dd><%=h @user.formatted_cell %></dd>
 <% end %>
 
   <dt>Email:</dt>
@@ -26,27 +26,27 @@
 
 <% unless @user.aim.blank? %>
   <dt>AIM ID:</dt>
-  <dd><a href="aim:goim?screenname=<%= @user.aim %>"><%= @user.aim %></a></dd>
+  <dd><a href="aim:goim?screenname=<%=h @user.aim %>"><%=h @user.aim %></a></dd>
 <% end %>
 
 <% unless @user.yahoo.blank? %>
   <dt>Yahoo ID:</dt>
-  <dd><%= @user.yahoo %>
+  <dd><%=h @user.yahoo %>
 <% end %>
 
 <% unless @user.msn.blank? %>
   <dt>MSN ID:</dt>
-  <dd><%= @user.msn %></dt>
+  <dd><%=h @user.msn %></dt>
 <% end %>
 
 <% unless @user.birthday.nil? %>
   <dt>Birthday:</dt>
-  <dd><%= @user.birthday.strftime("%B %e") %></dd>
+  <dd><%=h @user.birthday.strftime("%B %e") %></dd>
 <% end %>
 </dl>
 
 
-<p id='bio'><%= RedCloth.new(@user.bio).to_html %></p>
+<p id='bio'><%= RedCloth.new(@user.bio, [:filter_html]).to_html rescue nil %></p>
 
 <% if current_user == @user or (current_user and current_user.admin?) %><p><%= link_to image_tag("wrench_orange.png")+' Edit', edit_user_path(@user) %></p><% end %>
 
