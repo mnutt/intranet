@@ -14,6 +14,8 @@ class UsersController < ApplicationController
         "SUBSTRING_INDEX(users.login,' ',-1) ASC"
     end
 
+    order ||= "SUBSTRING_INDEX(users.login,' ',-1) ASC"
+
     if params[:commit] == "search"
       @users = User.search(params[:q].split.collect{ |c| c.downcase })
       if @users.size == 1
